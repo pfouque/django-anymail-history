@@ -1,0 +1,69 @@
+[tool.black]
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+add_imports = ["from __future__ import annotations"]
+combine_as_imports = true
+force_sort_within_sections = true
+sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER", "ANYMAIL_HISTORY"]
+known_django = ["django"]
+known_anymail_history = ["ANYMAIL_HISTORY"]
+skip_glob = [".local"]
+
+[tool.poetry]
+name = "anymail-history"
+version = "0.1.1"
+description = "Email History for Django Anymail"
+license = "MIT"
+authors = [
+    "Pascal Fouque <code@example.com>"
+]
+readme = "README.md"
+homepage = "https://github.com/pfouque/anymail-history"
+repository = "https://github.com/pfouque/anymail-history"
+documentation = "https://github.com/pfouque/anymail-history"
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4",
+    "Framework :: Django :: 4.0",
+    "Framework :: Django :: 4.1",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+packages = [{ include = "anymail_history" }]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+django = "^3.2 || ^4.0 || ^4.1 || ^4.2"
+django-anymail = "^8.6"
+
+[tool.poetry.dev-dependencies]
+black = "*"
+coverage = "*"
+flake8 = "*"
+flake8-bandit = "*"
+flake8-blind-except = "*"
+flake8-docstrings = "*"
+flake8-logging-format = "*"
+flake8-print = "*"
+freezegun = "*"
+isort = "*"
+mypy = "*"
+pre-commit = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-django = "*"
+tox = "*"
+
+[build-system]
+requires = ["poetry-core>=1.2.0"]
+build-backend = "poetry.core.masonry.api"
