@@ -62,8 +62,9 @@ ANYMAIL_STORE_HTML = True
 
 ### Available settings
 
--   `ANYMAIL_STORE_FAILED_SEND`: Store message even if esp didn't returned a message-id.
--   `ANYMAIL_STORE_HTML`: Store html alternatives.
+-   `ANYMAIL_STORE_FAILED_SEND`: (default: False) Store message even if esp didn't returned a message-id.
+-   `ANYMAIL_STORE_HTML`: (default: False) Store html alternatives.
+-   `ANYMAIL_RENDER_HTML`: (default: True) Generate html alternatives.
 
 ## Contribute
 

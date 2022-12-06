@@ -9,6 +9,8 @@ from anymail.signals import AnymailTrackingEvent, EventType, post_send, tracking
 
 from anymail_history.models import SentMessage, SentMessageEvent
 
+# NOTE: https://anymail.dev/en/stable/tips/testing/#testing-your-app
+
 
 @override_settings(EMAIL_BACKEND="anymail.backends.test.EmailBackend")
 class TestPostSendStoreSentMessages(TestCase):
