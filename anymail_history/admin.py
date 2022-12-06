@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Sequence
+from typing import Any
 
 from django.contrib import admin
 from django.http import HttpRequest
@@ -27,11 +27,6 @@ class SentMessageEventInline(admin.TabularInline):
     ) -> bool:
         return False
 
-    def get_readonly_fields(
-        self, request: HttpRequest, obj: SentMessage | None = None
-    ) -> Sequence[str]:
-        return self.fields
-
 
 @admin.register(SentMessage)
 class SentMessageAdmin(admin.ModelAdmin):
@@ -48,7 +43,8 @@ class SentMessageAdmin(admin.ModelAdmin):
     ) -> bool:
         return False
 
-    def get_readonly_fields(
-        self, request: HttpRequest, obj: SentMessage | None = None
-    ) -> Sequence[str]:
-        return self.fields
+    def get_actions(self, request: HttpRequest) -> dict[str, Any]:
+        actions = super().get_actions(request)
+        if "delete_selected" in actions:
+            del actions["delete_selected"]
+        return actions

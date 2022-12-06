@@ -15,7 +15,10 @@ class TestPostSendStoreSentMessages(TestCase):
     def setUp(self):
         super().setUp()
         self.message = AnymailMessage(
-            "Subject", "Text Body", "from@example.com", ["to@example.com"]
+            subject="Subject",
+            body="Text Body",
+            from_email="from@example.com",
+            to=["to@example.com"],
         )
 
     @staticmethod
@@ -44,6 +47,30 @@ class TestPostSendStoreSentMessages(TestCase):
         assert sent_message.content == "Text Body"
         assert sent_message.recipient_email == "one@example.com"
         assert sent_message.content_html is None
+
+    @override_settings(ANYMAIL_STORE_HTML=True)
+    def test_store_html(self):
+        assert SentMessage.objects.count() == 0
+
+        post_send.send(
+            sender=AnymailMessage,
+            message=AnymailMessage(
+                subject="Subject",
+                body="Text Body",
+                from_email="from@example.com",
+                to=["to@example.com"],
+                alternatives=[("<html></html>", "text/html")],
+            ),
+            status=self.build_anymail_status(
+                {
+                    "one@example.com": AnymailRecipientStatus("12345", "sent"),
+                }
+            ),
+            esp_name="ESP_NAME",
+        )
+        assert SentMessage.objects.count() == 1
+        sent_message = SentMessage.objects.first()
+        assert sent_message.content_html == "<html></html>"
 
     def test_multiple_recipients(self):
         recipients = {
