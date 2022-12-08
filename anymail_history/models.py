@@ -27,12 +27,8 @@ class SentMessage(models.Model):
         ]
 
 
-class SentMessageEvent(models.Model):
-    class Meta:
-        indexes = [
-            models.Index(fields=["created_on"]),
-            models.Index(fields=["event_name"]),
-        ]
+class MessageEvent(models.Model):
+    created_on = models.DateTimeField(editable=False)
 
     sent_message = models.ForeignKey(
         SentMessage,
@@ -40,6 +36,11 @@ class SentMessageEvent(models.Model):
         editable=False,
         related_name="message_events",
     )
-    created_on = models.DateTimeField(editable=False)
     event_name = models.CharField(max_length=32, editable=False)
     payload = models.JSONField(editable=False, default=dict)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["created_on"]),
+            models.Index(fields=["event_name"]),
+        ]

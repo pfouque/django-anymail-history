@@ -7,7 +7,7 @@ from django.utils import timezone
 from anymail.message import AnymailMessage, AnymailRecipientStatus, AnymailStatus
 from anymail.signals import AnymailTrackingEvent, EventType, post_send, tracking
 
-from anymail_history.models import SentMessage, SentMessageEvent
+from anymail_history.models import MessageEvent, SentMessage
 
 # NOTE: https://anymail.dev/en/stable/tips/testing/#testing-your-app
 
@@ -146,7 +146,7 @@ class TesttrackingisStored(TestCase):
             esp_name="ESP_NAME",
             message_id="12345",
         )
-        assert SentMessageEvent.objects.count() == 0
+        assert MessageEvent.objects.count() == 0
         tracking.send(
             sender=AnymailMessage,
             event=AnymailTrackingEvent(
@@ -157,10 +157,10 @@ class TesttrackingisStored(TestCase):
             ),
             esp_name="ESP_NAME",
         )
-        assert SentMessageEvent.objects.count() == 1
+        assert MessageEvent.objects.count() == 1
 
     def test_unknown_message(self):
-        assert SentMessageEvent.objects.count() == 0
+        assert MessageEvent.objects.count() == 0
         tracking.send(
             sender=AnymailMessage,
             event=AnymailTrackingEvent(
@@ -171,7 +171,7 @@ class TesttrackingisStored(TestCase):
             ),
             esp_name="ESP_NAME",
         )
-        assert SentMessageEvent.objects.count() == 0
+        assert MessageEvent.objects.count() == 0
 
     def test_multiple_messages(self):
         SentMessage.objects.create(
@@ -182,7 +182,7 @@ class TesttrackingisStored(TestCase):
             esp_name="ESP_NAME",
             message_id="12345",
         )
-        assert SentMessageEvent.objects.count() == 0
+        assert MessageEvent.objects.count() == 0
         tracking.send(
             sender=AnymailMessage,
             event=AnymailTrackingEvent(
@@ -193,4 +193,4 @@ class TesttrackingisStored(TestCase):
             ),
             esp_name="ESP_NAME",
         )
-        assert SentMessageEvent.objects.count() == 2
+        assert MessageEvent.objects.count() == 2

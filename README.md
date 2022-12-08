@@ -21,6 +21,7 @@ anymail-history implements models and signals for Django Anymail.
 -   Store sent emails
 -   Store tracking events
 -   Display Admin
+-   html templating
 
 
 ## Requirements

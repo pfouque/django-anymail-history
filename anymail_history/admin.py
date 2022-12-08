@@ -5,14 +5,10 @@ from typing import Any
 from django.contrib import admin
 from django.http import HttpRequest
 
-from .models import SentMessage, SentMessageEvent
+from .models import MessageEvent, SentMessage
 
 
-class SentMessageEventInline(admin.TabularInline):
-    model = SentMessageEvent
-    readonly_fields = fields = ("event_name", "created_on")
-    ordering = ["-created_on"]
-
+class ReadonlyInline(admin.TabularInline):
     can_delete = False
     show_change_link = False
     extra = 0
@@ -28,10 +24,18 @@ class SentMessageEventInline(admin.TabularInline):
         return False
 
 
+class MessageEventInline(ReadonlyInline):
+    model = MessageEvent
+    readonly_fields = fields = ("event_name", "created_on")
+    ordering = ["-created_on"]
+
+
 @admin.register(SentMessage)
 class SentMessageAdmin(admin.ModelAdmin):
     ordering = ["-created_on"]
-    inlines = [SentMessageEventInline]
+    inlines = [
+        MessageEventInline,
+    ]
 
     def has_add_permission(
         self, request: HttpRequest, obj: SentMessage | None = None
@@ -48,3 +52,9 @@ class SentMessageAdmin(admin.ModelAdmin):
         if "delete_selected" in actions:
             del actions["delete_selected"]
         return actions
+
+
+class SentMessageInline(ReadonlyInline):
+    model = SentMessage
+    readonly_fields = fields = ("message_id", "subject", "status")
+    ordering = ["-created_on"]
