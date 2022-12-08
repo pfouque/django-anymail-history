@@ -69,16 +69,6 @@ ANYMAIL_STORE_HTML = True
 
 ## Contribute
 
-It includes the following:
-
--   `poetry` for dependency management
--   `isort`, `black`, `pyupgrade` and `flake8` linting
--   `pre-commit` to run linting
--   `mypy` for type checking
--   `tox` and Github Actions for builds and CI
-
-There are default config files for the linting and mypy.
-
 ### Principles
 
 -   Simple for developers to get up-and-running
@@ -103,7 +93,14 @@ You can then run all tools:
 > pre-commit run --all-files
 ```
 
-For more info, see the docs, or the code quality chapters in _Boost Your Django DX_.
+It includes the following:
+
+-   `poetry` for dependency management
+-   `isort`, `black`, `pyupgrade` and `flake8` linting
+-   `mypy` for type checking
+-   `tox` and Github Actions for builds and CI
+
+There are default config files for the linting and mypy.
 
 ### Tests
 
@@ -140,14 +137,14 @@ ______________________ summary __________________________
   fmt: commands succeeded
   lint: commands succeeded
   mypy: commands succeeded
-  py37-django22: commands succeeded
   py37-django32: commands succeeded
+  py37-django40: commands succeeded
   py37-djangomain: commands succeeded
-  py38-django22: commands succeeded
   py38-django32: commands succeeded
+  py38-django40: commands succeeded
   py38-djangomain: commands succeeded
-  py39-django22: commands succeeded
   py39-django32: commands succeeded
+  py39-django40: commands succeeded
   py39-djangomain: commands succeeded
 ```
 
