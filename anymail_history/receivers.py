@@ -9,7 +9,7 @@ from anymail.message import AnymailMessage, AnymailStatus
 from anymail.signals import AnymailTrackingEvent, post_send, tracking
 from anymail.utils import get_anymail_setting
 
-from .models import SentMessage, SentMessageEvent
+from .models import MessageEvent, SentMessage
 
 
 @receiver(post_send)
@@ -54,7 +54,7 @@ def handle_email_webhook_tracking(
     for sent_message in SentMessage.objects.exclude(message_id=None).filter(
         esp_name=esp_name, message_id=event.message_id
     ):
-        SentMessageEvent.objects.create(
+        MessageEvent.objects.create(
             sent_message=sent_message,
             created_on=event.timestamp,
             event_name=event.event_type,

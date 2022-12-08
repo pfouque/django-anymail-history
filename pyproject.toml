@@ -1,23 +1,15 @@
-[tool.black]
-target-version = ['py310']
-
-[tool.isort]
-profile = "black"
-add_imports = ["from __future__ import annotations"]
-combine_as_imports = true
-force_sort_within_sections = true
-sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER", "ANYMAIL_HISTORY"]
-known_django = ["django"]
-known_anymail_history = ["ANYMAIL_HISTORY"]
-skip_glob = [".local"]
-
 [tool.poetry]
 name = "anymail-history"
 version = "0.1.1"
 description = "Email History for Django Anymail"
 license = "MIT"
 authors = [
-    "Pascal Fouque <code@example.com>"
+    "Pascal Fouque <fouquepascal@gmail.com>",
+    "Matthieu Etchegoyen <etchegom@gmail.com>",
+]
+maintainers = [
+    "Pascal Fouque <fouquepascal@gmail.com>",
+    "Matthieu Etchegoyen <etchegom@gmail.com>",
 ]
 readme = "README.md"
 homepage = "https://github.com/pfouque/anymail-history"
@@ -63,6 +55,19 @@ pytest = "*"
 pytest-cov = "*"
 pytest-django = "*"
 tox = "*"
+
+[tool.black]
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+add_imports = ["from __future__ import annotations"]
+combine_as_imports = true
+force_sort_within_sections = true
+sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER", "ANYMAIL_HISTORY"]
+known_django = ["django"]
+known_anymail_history = ["ANYMAIL_HISTORY"]
+skip_glob = [".local"]
 
 [build-system]
 requires = ["poetry-core>=1.2.0"]

@@ -5,7 +5,7 @@ from os import path
 DEBUG = True
 TEMPLATE_DEBUG = True
 USE_TZ = True
-USE_L10N = True
+USE_I18N = True
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "test.db"}}
 
@@ -18,6 +18,7 @@ INSTALLED_APPS = (
     "django.contrib.staticfiles",
     "anymail",
     "anymail_history",
+    "sample_project.users",
 )
 
 MIDDLEWARE = [
@@ -71,7 +72,9 @@ LOGGING = {
     },
 }
 
-ROOT_URLCONF = "sample_app.urls"
+AUTH_USER_MODEL = "users.User"
+
+ROOT_URLCONF = "sample_project.urls"
 
 if not DEBUG:
     raise Exception("This settings file can only be used with DEBUG=True")

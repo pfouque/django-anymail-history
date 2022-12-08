@@ -7,7 +7,7 @@ from django.utils import timezone
 
 from anymail.signals import EventType
 
-from anymail_history.models import SentMessage, SentMessageEvent
+from anymail_history.models import MessageEvent, SentMessage
 
 
 class TestSentMessageAdmin(TestCase):
@@ -20,7 +20,7 @@ class TestSentMessageAdmin(TestCase):
             esp_name="ESP_NAME",
             message_id="12345",
         )
-        SentMessageEvent.objects.create(
+        MessageEvent.objects.create(
             sent_message=self.sent_message,
             created_on=timezone.now(),
             event_name=EventType.SENT,
