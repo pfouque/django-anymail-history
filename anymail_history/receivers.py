@@ -2,13 +2,17 @@ from __future__ import annotations
 
 from typing import Any
 
-from anymail.message import AnymailMessage, AnymailStatus
-from anymail.signals import AnymailTrackingEvent, post_send, tracking
+from anymail.message import AnymailMessage
+from anymail.message import AnymailStatus
+from anymail.signals import AnymailTrackingEvent
+from anymail.signals import post_send
+from anymail.signals import tracking
 from anymail.utils import get_anymail_setting
 from django.db.models import Model
 from django.dispatch import receiver
 
-from .models import MessageEvent, SentMessage
+from .models import MessageEvent
+from .models import SentMessage
 
 
 @receiver(post_send)
@@ -20,15 +24,18 @@ def store_sent_emails(
     **kwargs: dict[Any, Any],
 ) -> None:
     content_html = None
-    if get_anymail_setting("STORE_HTML", default=False):
+    if get_anymail_setting(
+        "STORE_HTML", default=False, esp_name=esp_name
+    ) or get_anymail_setting("STORE_HTML", default=False):
         for content, mimetype in message.alternatives:
             if mimetype == "text/html":
                 content_html = content
 
     for email, recipient_status in status.recipients.items():
         if (
-            get_anymail_setting("STORE_FAILED_SEND", default=False)
-            or recipient_status.message_id is not None
+            recipient_status.message_id
+            or get_anymail_setting("STORE_FAILED_SEND", default=False, esp_name=esp_name)
+            or get_anymail_setting("STORE_FAILED_SEND", default=False)
         ):
             SentMessage.objects.create(
                 esp_name=esp_name,

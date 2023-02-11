@@ -37,6 +37,7 @@ packages = [{ include = "anymail_history" }]
 python = "^3.8"
 django = "^3.2 || ^4.0 || ^4.1 || ^4.2"
 django-anymail = "^8.6 || ^9.0"
+html2text = "^2020.1.16"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
@@ -106,11 +107,19 @@ ignore = [
     "E501",  # Line too long
 ]
 
+fix = true
 unfixable = [
   "F401"  # unused-import
 ]
 
-fix = true
+[tool.ruff.per-file-ignores]
+"*/migrations/*.py" = [
+  "N999"  # Invalid module name: '0001_initial'
+]
+
+[tool.ruff.isort]
+force-single-line = true
+required-imports = ["from __future__ import annotations"]
 
 [tool.ruff.mccabe]
 # Unlike Flake8, default to a complexity level of 10.

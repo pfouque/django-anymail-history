@@ -476,6 +476,18 @@ files = [
 python-dateutil = ">=2.7"
 
 [[package]]
+name = "html2text"
+version = "2020.1.16"
+description = "Turn HTML into equivalent Markdown-structured text."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "html2text-2020.1.16-py3-none-any.whl", hash = "sha256:c7c629882da0cf377d66f073329ccf34a12ed2adf0169b9285ae4e63ef54c82b"},
+    {file = "html2text-2020.1.16.tar.gz", hash = "sha256:e296318e16b059ddb97f7a8a1d6a5c1d7af4544049a01e261731d2d5cc277bbb"},
+]
+
+[[package]]
 name = "identify"
 version = "2.5.20"
 description = "File identification library for Python"
@@ -1054,4 +1066,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "2e7c36cd95562632fa5a28ee2a4b05bba4b40e64e2e715ad65efdfab8e7ac4ac"
+content-hash = "4a32061330c1927af69f9160ab17d753b5a608bdffaf04b0bf64e064021fef58"

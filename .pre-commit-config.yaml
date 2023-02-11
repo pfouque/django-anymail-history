@@ -43,8 +43,9 @@ repos:
       - id: mypy
         args: []
         additional_dependencies:
-          - django-anymail
           - django-stubs
+          - django-anymail
+          - html2text
 
   - repo: https://github.com/python-poetry/poetry
     rev: "1.4.0"
