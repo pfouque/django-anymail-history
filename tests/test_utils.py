@@ -2,11 +2,10 @@ from __future__ import annotations
 
 from unittest.mock import Mock, patch
 
-from django.template.exceptions import TemplateDoesNotExist
-from django.test import TestCase
-
 from anymail.exceptions import AnymailAPIError
 from anymail.message import AnymailMessage
+from django.template.exceptions import TemplateDoesNotExist
+from django.test import TestCase
 
 from anymail_history import send_templated_email
 

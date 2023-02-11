@@ -1,11 +1,10 @@
 from __future__ import annotations
 
+from anymail.message import AnymailMessage, AnymailRecipientStatus, AnymailStatus
+from anymail.signals import AnymailTrackingEvent, EventType, post_send, tracking
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils import timezone
-
-from anymail.message import AnymailMessage, AnymailRecipientStatus, AnymailStatus
-from anymail.signals import AnymailTrackingEvent, EventType, post_send, tracking
 
 from anymail_history.models import MessageEvent, SentMessage
 

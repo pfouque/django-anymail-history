@@ -49,7 +49,7 @@ TEMPLATES = [
 
 STATIC_URL = "/static/"
 
-SECRET_KEY = "secret"  # noqa: S105
+SECRET_KEY = "secret"
 
 LOGGING = {
     "version": 1,

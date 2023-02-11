@@ -2,11 +2,10 @@ from __future__ import annotations
 
 from typing import Any
 
-from django.template.loader import render_to_string
-
 from anymail.exceptions import AnymailAPIError
 from anymail.message import AnymailMessage
 from anymail.utils import get_anymail_setting
+from django.template.loader import render_to_string
 
 
 def send_templated_email(

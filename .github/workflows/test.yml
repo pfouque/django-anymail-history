@@ -1,0 +1,52 @@
+name: Python / Django
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # NOTE: https://github.com/jefftriplett/python-github-actions-matrix-demo/
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        django-version: ["3.2", "4.0", "4.1", "4.2a1"]
+        anymail-version: ["8.4", "8.5", "8.6", "9.0"]
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: poetry
+
+      - name: Install requirements
+        run: poetry install
+
+      - name: Install django ${{ matrix.django-version }}
+        run: poetry add "django@~=${{ matrix.django-version }}"
+
+      - name: Install anymail ${{ matrix.anymail-version }}
+        run: poetry add "django-anymail@~=${{ matrix.anymail-version }}"
+
+      - name: Django check
+        run: poetry run python manage.py check
+
+      - name: Run tests
+        run: poetry run pytest --verbose --cov=anymail_history
+        env:
+          FORCE_COLOR: true
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3

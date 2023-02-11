@@ -1,11 +1,10 @@
 from __future__ import annotations
 
+from anymail.signals import EventType
 from django.contrib.auth.models import User
 from django.test import Client, TestCase
 from django.urls import reverse
 from django.utils import timezone
-
-from anymail.signals import EventType
 
 from anymail_history.models import MessageEvent, SentMessage
 

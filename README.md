@@ -1,6 +1,6 @@
 # anymail-history - Email History for Django Anymail
 
-[![CI tests](https://github.com/pfouque/django-anymail-history/actions/workflows/tox.yml/badge.svg)](https://github.com/pfouque/django-anymail-history/actions/workflows/tox.yml)
+[![CI tests](https://github.com/pfouque/django-anymail-history/actions/workflows/test.yml/badge.svg)](https://github.com/pfouque/django-anymail-history/actions/workflows/test.yml)
 [![Documentation](https://img.shields.io/static/v1?label=Docs&message=READ&color=informational&style=plastic)](https://anymail-history.github.io/anymail-history/)
 [![MIT License](https://img.shields.io/static/v1?label=License&message=MIT&color=informational&style=plastic)](https://github.com/pfouque/anymail-history/)
 
@@ -13,7 +13,7 @@ anymail-history implements models and signals for Django Anymail.
 ## Resources
 
 -   Full documentation: SOON
--   Package on PyPI: SOON
+-   Package on PyPI: [https://pypi.org/project/anymail-history/](https://pypi.org/project/anymail-history/)
 -   Project on Github: [https://github.com/pfouque/django-anymail-history](https://github.com/pfouque/django-anymail-history)
 
 ## Features
@@ -21,13 +21,13 @@ anymail-history implements models and signals for Django Anymail.
 -   Store sent emails
 -   Store tracking events
 -   Display Admin
--   html templating
+-   html templating ?
 
 
 ## Requirements
 
 -   Django >=3.2
--   Python >=3.7
+-   Python >=3.8
 
 ## How to
 
@@ -72,7 +72,7 @@ ANYMAIL_STORE_HTML = True
 ### Principles
 
 -   Simple for developers to get up-and-running
--   Consistent style (`black`, `isort`, `flake8`)
+-   Consistent style (`black`, `ruff`)
 -   Future-proof (`pyupgrade`)
 -   Full type hinting (`mypy`)
 
@@ -96,9 +96,9 @@ You can then run all tools:
 It includes the following:
 
 -   `poetry` for dependency management
--   `isort`, `black`, `pyupgrade` and `flake8` linting
+-   `Ruff`, `black` and `pyupgrade` linting
 -   `mypy` for type checking
--   `tox` and Github Actions for builds and CI
+-   `Github Actions` for builds and CI
 
 There are default config files for the linting and mypy.
 
@@ -127,28 +127,8 @@ $ poetry shell
 (anymail-history-py3.10) $ pytest
 ```
 
-The full suite is controlled by `tox`, which contains a set of environments that will format, lint,
-and test against all support Python + Django version combinations.
-
-```
-$ tox
-...
-______________________ summary __________________________
-  fmt: commands succeeded
-  lint: commands succeeded
-  mypy: commands succeeded
-  py37-django32: commands succeeded
-  py37-django40: commands succeeded
-  py37-djangomain: commands succeeded
-  py38-django32: commands succeeded
-  py38-django40: commands succeeded
-  py38-djangomain: commands succeeded
-  py39-django32: commands succeeded
-  py39-django40: commands succeeded
-  py39-djangomain: commands succeeded
-```
-
 #### CI
 
-There is a `.github/workflows/tox.yml` file that can be used as a baseline to run all of the tests
-on Github. This file runs the oldest LTS (3.2), newest (4.1), and head of the main Django branch.
+There is a `.github/workflows/lint.yml` file that can be used as a baseline to define and ensure coding rules on Github.
+
+There is a `.github/workflows/test.yml` file that can be used as a baseline to run all of the tests on Github. This file runs the oldest LTS (3.2), newest (4.1), and head of the main Django branch.
