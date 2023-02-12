@@ -1,14 +1,18 @@
 # anymail-history - Email History for Django Anymail
 
 [![CI tests](https://github.com/pfouque/django-anymail-history/actions/workflows/test.yml/badge.svg)](https://github.com/pfouque/django-anymail-history/actions/workflows/test.yml)
+
+[![codecov](https://codecov.io/github/pfouque/django-anymail-history/branch/master/graph/badge.svg?token=GWGDR6AR6D)](https://codecov.io/github/pfouque/django-anymail-history)
+
 [![Documentation](https://img.shields.io/static/v1?label=Docs&message=READ&color=informational&style=plastic)](https://anymail-history.github.io/anymail-history/)
-[![MIT License](https://img.shields.io/static/v1?label=License&message=MIT&color=informational&style=plastic)](https://github.com/pfouque/anymail-history/)
+
+[![MIT License](https://img.shields.io/static/v1?label=License&message=MIT&color=informational&style=plastic)](https://github.com/pfouque/anymail-history/LICENSE)
 
 Keep history of all emails sent by Django Anymail
 
 ## Introduction
 
-anymail-history implements models and signals for Django Anymail.
+anymail-history implements database storage for Django Anymail.
 
 ## Resources
 
