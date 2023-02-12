@@ -2,12 +2,11 @@ from __future__ import annotations
 
 from typing import Any
 
-from django.db.models import Model
-from django.dispatch import receiver
-
 from anymail.message import AnymailMessage, AnymailStatus
 from anymail.signals import AnymailTrackingEvent, post_send, tracking
 from anymail.utils import get_anymail_setting
+from django.db.models import Model
+from django.dispatch import receiver
 
 from .models import MessageEvent, SentMessage
 
@@ -20,7 +19,6 @@ def store_sent_emails(
     esp_name: str,
     **kwargs: dict[Any, Any],
 ) -> None:
-
     content_html = None
     if get_anymail_setting("STORE_HTML", default=False):
         for content, mimetype in message.alternatives:

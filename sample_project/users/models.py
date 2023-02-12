@@ -2,11 +2,10 @@ from __future__ import annotations
 
 from typing import Any
 
+from anymail.message import AnymailMessage
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.utils import translation
-
-from anymail.message import AnymailMessage
 
 from anymail_history.utils import send_templated_email
 

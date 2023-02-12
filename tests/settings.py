@@ -5,7 +5,6 @@ from os import path
 DEBUG = True
 TEMPLATE_DEBUG = True
 USE_TZ = True
-USE_L10N = True
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "test.db"}}
 
@@ -48,7 +47,7 @@ TEMPLATES = [
 
 STATIC_URL = "/static/"
 
-SECRET_KEY = "secret"  # noqa: S105
+SECRET_KEY = "secret"
 
 LOGGING = {
     "version": 1,
