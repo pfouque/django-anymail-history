@@ -1,4 +1,4 @@
-name: Python / Django
+name: Tests
 
 on:
   pull_request:
@@ -44,9 +44,6 @@ jobs:
         run: poetry run python manage.py check
 
       - name: Run tests
-        run: poetry run pytest --verbose --cov=anymail_history
+        run: poetry run pytest --verbose
         env:
           FORCE_COLOR: true
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
