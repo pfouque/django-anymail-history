@@ -1,14 +1,11 @@
-# anymail-history - Email History for Django Anymail
+# anymail-history - Email History (database storage) for [Django Anymail](https://anymail.dev/)
 
 [![CI tests](https://github.com/pfouque/django-anymail-history/actions/workflows/test.yml/badge.svg)](https://github.com/pfouque/django-anymail-history/actions/workflows/test.yml)
-
 [![codecov](https://codecov.io/github/pfouque/django-anymail-history/branch/master/graph/badge.svg?token=GWGDR6AR6D)](https://codecov.io/github/pfouque/django-anymail-history)
-
-[![Documentation](https://img.shields.io/static/v1?label=Docs&message=READ&color=informational&style=plastic)](https://anymail-history.github.io/anymail-history/)
-
+[![Documentation](https://img.shields.io/static/v1?label=Docs&message=READ&color=informational&style=plastic)](https://github.com/pfouque/django-anymail-history#settings)
 [![MIT License](https://img.shields.io/static/v1?label=License&message=MIT&color=informational&style=plastic)](https://github.com/pfouque/anymail-history/LICENSE)
 
-Keep history of all emails sent by Django Anymail
+Keep history of all emails sent by [Django Anymail](https://anymail.dev/)
 
 ## Introduction
 
@@ -16,7 +13,6 @@ anymail-history implements database storage for Django Anymail.
 
 ## Resources
 
--   Full documentation: SOON
 -   Package on PyPI: [https://pypi.org/project/anymail-history/](https://pypi.org/project/anymail-history/)
 -   Project on Github: [https://github.com/pfouque/django-anymail-history](https://github.com/pfouque/django-anymail-history)
 
@@ -35,11 +31,14 @@ anymail-history implements database storage for Django Anymail.
 
 ## How to
 
-1. Install
+1. [Install Anymail](https://anymail.dev/en/stable/quickstart/)
+
+2. Install
     ```
-    $ pip install "django-anymail[mailgun]" "django-anymail-history"
+    $ pip install "django-anymail-history"
     ```
-2. [Configure Anymail](https://github.com/anymail/django-anymail/#anymail-1-2-3)
+
+3. Register anymail_history in your list of Django applications:
     ```
     INSTALLED_APPS = [
         # ...
@@ -48,11 +47,14 @@ anymail-history implements database storage for Django Anymail.
         # ...
     ]
     ```
-3. Enjoy!
+4. Then migrate the app to create the database table
+    ```manage.py migrate```
 
-## settings
+5. 🎉 Voila!
 
-You can add settings to your project’s settings.py either as a single ANYMAIL dict, or by breaking out individual settings prefixed with ANYMAIL_. So this settings dict:
+## Settings
+
+You can add settings to your project’s settings.py either as a single `ANYMAIL` dict, or by breaking out individual settings prefixed with ANYMAIL_. So this settings dict:
 
 ```
 ANYMAIL = {
@@ -69,7 +71,6 @@ ANYMAIL_STORE_HTML = True
 
 -   `ANYMAIL_STORE_FAILED_SEND`: (default: False) Store message even if esp didn't returned a message-id.
 -   `ANYMAIL_STORE_HTML`: (default: False) Store html alternatives.
--   `ANYMAIL_RENDER_HTML`: (default: True) Generate html alternatives.
 
 ## Contribute
 
@@ -133,6 +134,8 @@ $ poetry shell
 
 #### CI
 
-There is a `.github/workflows/lint.yml` file that can be used as a baseline to define and ensure coding rules on Github.
+- `.github/workflows/lint.yml`: defines and ensure coding rules on Github.
 
-There is a `.github/workflows/test.yml` file that can be used as a baseline to run all of the tests on Github. This file runs the oldest LTS (3.2), newest (4.1), and head of the main Django branch.
+- `.github/workflows/test.yml`: Runs tests on all compatible combinations of Django (3.2+) & Anymail(8.4+), Python (3.8+)in a Github matrix.
+
+- `.github/workflows/coverage.yml`: Calculates the coverage on an up to date version.
