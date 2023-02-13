@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "anymail-history"
-version = "0.1.1"
+version = "0.1.2"
 description = "Email History for Django Anymail"
 license = "MIT"
 authors = [
