@@ -12,15 +12,14 @@ from anymail_history.models import MessageEvent, SentMessage
 class TestSentMessageAdmin(TestCase):
     staff_client: Client
 
-    def setUp(self):
-        super().setUp()
-
-        self.sent_message = SentMessage.objects.create(
+    @classmethod
+    def setUpTestData(cls):
+        cls.sent_message = SentMessage.objects.create(
             esp_name="ESP_NAME",
             message_id="12345",
         )
         MessageEvent.objects.create(
-            sent_message=self.sent_message,
+            sent_message=cls.sent_message,
             created_on=timezone.now(),
             event_name=EventType.SENT,
             payload={},
@@ -35,8 +34,8 @@ class TestSentMessageAdmin(TestCase):
                 "is_active": True,
             },
         )
-        self.staff_client = Client()
-        self.staff_client.force_login(user)
+        cls.staff_client = Client()
+        cls.staff_client.force_login(user)
 
     def test_changelist(self):
         resp = self.staff_client.get(

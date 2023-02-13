@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Any
-
 from django.contrib import admin
 from django.http import HttpRequest
 
@@ -9,7 +7,6 @@ from .models import MessageEvent, SentMessage
 
 
 class ReadonlyInline(admin.TabularInline):
-    can_delete = False
     show_change_link = False
     extra = 0
 
@@ -26,7 +23,8 @@ class ReadonlyInline(admin.TabularInline):
 
 class MessageEventInline(ReadonlyInline):
     model = MessageEvent
-    readonly_fields = fields = ("event_name", "created_on")
+    fields = ("event_name", "created_on")
+    readonly_fields = fields
     ordering = ["-created_on"]
 
 
@@ -47,14 +45,9 @@ class SentMessageAdmin(admin.ModelAdmin):
     ) -> bool:
         return False
 
-    def get_actions(self, request: HttpRequest) -> dict[str, Any]:
-        actions = super().get_actions(request)
-        if "delete_selected" in actions:
-            del actions["delete_selected"]
-        return actions
-
 
 class SentMessageInline(ReadonlyInline):
     model = SentMessage
-    readonly_fields = fields = ("message_id", "subject", "status")
+    fields = ("message_id", "subject", "status")
+    readonly_fields = fields
     ordering = ["-created_on"]

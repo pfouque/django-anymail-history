@@ -36,7 +36,7 @@ packages = [{ include = "anymail_history" }]
 [tool.poetry.dependencies]
 python = "^3.8"
 django = "^3.2 || ^4.0 || ^4.1 || ^4.2"
-django-anymail = "^8.4 || ^8.5 || ^8.6 || ^9.0"
+django-anymail = "^8.6 || ^9.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
@@ -108,26 +108,25 @@ unfixable = [
   "F401"  # unused-import
 ]
 
-fix = false
+fix = true
 
 [tool.ruff.mccabe]
 # Unlike Flake8, default to a complexity level of 10.
 max-complexity = 10
 
 [tool.mypy]
-python_version = "3.8"
-
 plugins = ["mypy_django_plugin.main"]
 
+[[tool.mypy.overrides]]
+module = "anymail.*"
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = "tests.*"
-disallow_untyped_defs = false
+allow_untyped_defs = true
 
 [tool.django-stubs]
 django_settings_module = "tests.settings"
-
 
 [build-system]
 requires = ["poetry-core> = 1.2.0"]
