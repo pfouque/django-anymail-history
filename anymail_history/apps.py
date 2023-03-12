@@ -3,7 +3,7 @@ from __future__ import annotations
 from django.apps import AppConfig
 
 
-class MyAppConfig(AppConfig):
+class AnymailHistoryConfig(AppConfig):
     name = "anymail_history"
     verbose_name = "Anymail History"
 
