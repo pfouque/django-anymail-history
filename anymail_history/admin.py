@@ -3,7 +3,8 @@ from __future__ import annotations
 from django.contrib import admin
 from django.http import HttpRequest
 
-from .models import MessageEvent, SentMessage
+from .models import MessageEvent
+from .models import SentMessage
 
 
 class ReadonlyInline(admin.TabularInline):

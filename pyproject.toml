@@ -20,9 +20,9 @@ classifiers = [
     "Environment :: Web Environment",
     "Framework :: Django",
     "Framework :: Django :: 3.2",
-    "Framework :: Django :: 4",
-    "Framework :: Django :: 4.0",
     "Framework :: Django :: 4.1",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3 :: Only",
@@ -30,13 +30,14 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 packages = [{ include = "anymail_history" }]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-django = "^3.2 || ^4.0 || ^4.1 || ^4.2"
-django-anymail = "^8.6 || ^9.0"
+django = "^3.2 || ^4.1 || ^4.2"
+django-anymail = "^9.0 || ^10.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
@@ -52,15 +53,13 @@ pytest-randomly = "*"
 pytest-xdist = "*"
 ruff = "*"
 
-[tool.black]
-line-length = 90
-target-version = ['py38']
-
 [tool.ruff]
 line-length = 90
 target-version = "py38"
+fix = true
 
-select = [
+[tool.ruff.lint]
+extend-select = [
   # https://github.com/charliermarsh/ruff#table-of-contents
   "F",  # Pyflakes
   "E",  # pycodestyle
@@ -104,13 +103,16 @@ select = [
 ]
 ignore = [
     "E501",  # Line too long
+    "RUF012",  # Mutable class attributes should be annotated with `typing.ClassVar`
 ]
 
 unfixable = [
   "F401"  # unused-import
 ]
 
-fix = true
+[tool.ruff.isort]
+force-single-line = true
+required-imports = ["from __future__ import annotations"]
 
 [tool.ruff.mccabe]
 # Unlike Flake8, default to a complexity level of 10.
