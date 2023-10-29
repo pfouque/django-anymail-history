@@ -1,12 +1,18 @@
 from __future__ import annotations
 
-from anymail.message import AnymailMessage, AnymailRecipientStatus, AnymailStatus
-from anymail.signals import AnymailTrackingEvent, EventType, post_send, tracking
+from anymail.message import AnymailMessage
+from anymail.message import AnymailRecipientStatus
+from anymail.message import AnymailStatus
+from anymail.signals import AnymailTrackingEvent
+from anymail.signals import EventType
+from anymail.signals import post_send
+from anymail.signals import tracking
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils import timezone
 
-from anymail_history.models import MessageEvent, SentMessage
+from anymail_history.models import MessageEvent
+from anymail_history.models import SentMessage
 
 # NOTE: https://anymail.dev/en/stable/tips/testing/#testing-your-app
 

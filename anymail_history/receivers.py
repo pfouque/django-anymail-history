@@ -2,13 +2,17 @@ from __future__ import annotations
 
 from typing import Any
 
-from anymail.message import AnymailMessage, AnymailStatus
-from anymail.signals import AnymailTrackingEvent, post_send, tracking
+from anymail.message import AnymailMessage
+from anymail.message import AnymailStatus
+from anymail.signals import AnymailTrackingEvent
+from anymail.signals import post_send
+from anymail.signals import tracking
 from anymail.utils import get_anymail_setting
 from django.db.models import Model
 from django.dispatch import receiver
 
-from .models import MessageEvent, SentMessage
+from .models import MessageEvent
+from .models import SentMessage
 
 
 @receiver(post_send)
