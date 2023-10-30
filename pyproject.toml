@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "anymail-history"
-version = "0.1.4"
+version = "0.1.7"
 description = "Email History for Django Anymail"
 license = "MIT"
 authors = [
@@ -35,9 +35,9 @@ classifiers = [
 packages = [{ include = "anymail_history" }]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-django = "^3.2 || ^4.1 || ^4.2"
-django-anymail = "^9.0 || ^10.0"
+python = ">=3.8"
+django = "3.2.* | >=4.1.*"
+django-anymail = ">=9.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
